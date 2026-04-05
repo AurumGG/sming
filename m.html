@@ -3,31 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gwyn Dorado Full-Random Streaming v6.1</title>
+    <title>Gwyn Dorado Smart Streaming v7.0</title>
     <style>
-        body { font-family: 'Pretendard', -apple-system, sans-serif; padding: 20px; background-color: #f0f4f8; color: #334e68; }
+        body { font-family: 'Pretendard', sans-serif; padding: 20px; background-color: #f0f4f8; color: #334e68; }
         .container { max-width: 950px; margin: 0 auto; background: white; padding: 35px; border-radius: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.06); }
-        h1 { text-align: center; color: #00cd3c; margin-bottom: 5px; letter-spacing: -1px; }
+        h1 { text-align: center; color: #00cd3c; margin-bottom: 5px; }
         .desc { text-align: center; color: #627d98; font-size: 0.95em; margin-bottom: 35px; line-height: 1.6; }
-        .set-card { border: 1px solid #d9e2ec; border-radius: 20px; margin-bottom: 30px; background: #ffffff; transition: 0.3s; }
+        .set-card { border: 1px solid #d9e2ec; border-radius: 20px; margin-bottom: 30px; background: #ffffff; }
         .set-header { background: #f1f5f9; padding: 15px 25px; font-weight: bold; border-bottom: 1px solid #d9e2ec; display: flex; justify-content: space-between; align-items: center; border-radius: 20px 20px 0 0; }
         .exposure-tag { background: #dcfce7; color: #166534; padding: 5px 14px; border-radius: 25px; font-size: 0.85em; }
-        .module-container { display: flex; flex-wrap: wrap; gap: 15px; padding: 25px; }
-        .module-box { flex: 1; min-width: 200px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 15px; padding: 20px; text-align: center; }
-        .btn { display: block; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 0.9em; margin-bottom: 10px; transition: 0.2s; }
+        .module-container { display: flex; flex-wrap: wrap; gap: 15px; padding: 25px; justify-content: center; }
+        .module-box { flex: 1; min-width: 160px; max-width: 220px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 15px; padding: 15px; text-align: center; }
+        .btn { display: block; padding: 10px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 0.85em; margin-bottom: 8px; transition: 0.2s; }
         .btn-aos { background-color: #00cd3c; color: white; }
         .btn-ios { background-color: #0ea5e9; color: white; }
-        .btn:hover { filter: brightness(0.9); transform: translateY(-2px); }
         .footer { margin-top: 50px; text-align: center; font-size: 0.85em; color: #94a3b8; border-top: 1px solid #f1f5f9; padding-top: 25px; line-height: 1.6; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Gwyn Dorado Streaming v6.1</h1>
+    <h1>Gwyn Dorado Streaming v7.0</h1>
     <p class="desc">
-        <strong>풀-랜덤 셔플링 엔진 적용</strong> (일반곡 순서 및 타겟 위치 무작위화)<br>
-        Full-Random Shuffling Engine Applied (Randomized Track Order & Target Position)
+        <strong>시간 동기화 가변 엔진</strong> (세트당 약 60분 유지 & 랜덤 셔플)<br>
+        Time-Synced Variable Engine (Approx. 60min per SET / Randomized)
     </p>
 
     <script>
@@ -45,14 +44,18 @@
         }
 
         const exposurePatterns = [3, 4, 2, 5, 3, 4, 5, 2, 4, 3];
+        const TOTAL_TARGET_SONGS = 18; // 1시간당 평균 곡 수
 
         for (let i = 0; i < 10; i++) {
             let exposureCount = exposurePatterns[i];
+            // 노출 횟수에 따라 모듈당 일반곡 수를 계산 (전체 합이 약 18곡이 되도록)
+            let songsPerModule = Math.round(TOTAL_TARGET_SONGS / exposureCount);
+            
             document.write(`
                 <div class="set-card">
                     <div class="set-header">
-                        <span>SET ${i + 1} (약 1시간 / Approx. 1Hr)</span>
-                        <span class="exposure-tag">가변 노출: ${exposureCount}회 / Variable Exposure: ${exposureCount}x</span>
+                        <span>SET ${i + 1} (약 60분 / ~60min)</span>
+                        <span class="exposure-tag">타겟 ${exposureCount}회 / Target ${exposureCount}x</span>
                     </div>
                     <div class="module-container">`);
 
@@ -62,9 +65,16 @@
                 let tempG2 = shuffle([...g2]);
                 let tempG3 = shuffle([...g3]);
 
-                pool.push(tempG1.pop(), tempG1.pop(), tempG2.pop(), tempG3.pop(), tempG2.pop());
-                shuffle(pool);
+                // 동적 사이즈 결정: 타겟곡 1곡을 제외한 나머지 일반곡 채우기
+                let normalSongCount = songsPerModule - 1;
+                for(let s=0; s < normalSongCount; s++) {
+                    if(s % 2 === 0) pool.push(tempG1.pop());
+                    else pool.push(s % 3 === 0 ? tempG2.pop() : tempG3.pop());
+                }
+                
+                shuffle(pool); // 일반곡 순서 완전 무작위 셔플 (DAC 로직)
 
+                // 타겟곡 랜덤 삽입 (시작과 끝 제외)
                 let targetPos = Math.floor(Math.random() * (pool.length - 1)) + 1;
                 pool.splice(targetPos, 0, targetId);
 
@@ -72,8 +82,8 @@
 
                 document.write(`
                     <div class="module-box">
-                        <strong>모듈 / Module ${m + 1}</strong><br><br>
-                        <a href="melonapp://play?menuid=0&ctype=1&cid=${cid}" class="btn btn-aos">Android / iOS</a>
+                        <strong>모듈 ${m + 1}</strong><br><small>(${pool.length} Tracks)</small><br><br>
+                        <a href="melonapp://play?menuid=0&ctype=1&cid=${cid}" class="btn btn-aos">AOS / iOS</a>
                         <a href="melonipad://play/?ctype=1&menuid=0&cid=${cid}" class="btn btn-ios">iPad</a>
                     </div>
                 `);
@@ -83,9 +93,9 @@
     </script>
 
     <div class="footer">
-        (주)스마트데이터복구SDR 기술이사 정밀 검수본 v6.1<br>
-        Full-Random Logic & Fisher-Yates Shuffle Applied.<br>
-        "Add to the end of your playlist" in sequence to build the 10-hour list.
+        (주)스마트데이터복구SDR 기술이사 정밀 검수본 v7.0<br>
+        Time-Synced Variable Module Logic Applied.<br>
+        All General tracks and target positions are randomized per click.
     </div>
 </div>
 
