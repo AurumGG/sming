@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gwyn Dorado Smart Streaming v7.0</title>
+    <title>Gwyn Dorado Smart Streaming v7.1</title>
     <style>
         body { font-family: 'Pretendard', sans-serif; padding: 20px; background-color: #f0f4f8; color: #334e68; }
         .container { max-width: 950px; margin: 0 auto; background: white; padding: 35px; border-radius: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.06); }
@@ -23,15 +23,15 @@
 <body>
 
 <div class="container">
-    <h1>Gwyn Dorado Streaming v7.0</h1>
+    <h1>Gwyn Dorado Streaming v7.1</h1>
     <p class="desc">
-        <strong>시간 동기화 가변 엔진</strong> (세트당 약 60분 유지 & 랜덤 셔플)<br>
-        Time-Synced Variable Engine (Approx. 60min per SET / Randomized)
+        <strong>시간 동기화 가변 엔진</strong> (첫 곡 타겟 허용 & 마지막 제외)<br>
+        Time-Synced Engine (Target Allowed at First / Excluded at Last)
     </p>
 
     <script>
         const targetId = "601671374";
-        const g1 = ["600806382", "600770078", "600151797", "600151798", "38875091", "36816030", "600706635", "600656412", "600571771", "600332434", "38875092", "600418516"];
+        const g1 = ["600806382", "600770078", "600151797", "600151798", "38875091", "36816030", "600706635", "600656412", "600571771", "600332434", "600418516"];
         const g2 = ["601680777", "601684352", "601676007", "601685304", "601675892", "601645177", "601694948", "601685083", "601675891", "601672944", "601683484", "601684109", "601615814", "601674307", "601672040", "601672038", "601615064", "601632440", "601630672", "601641057", "601613152", "601606473", "601631034", "601632766", "601615981", "601630808", "601630617", "601641721", "601630512", "601612734", "601630599", "601631416", "601615337", "601596324", "601628587", "601612718", "601615844", "601615638", "601628585", "601614320", "601604057", "601509058", "601614909", "601612444", "601612646", "601606015", "601603963", "601604267", "601597222"];
         const g3 = ["601237102", "601013499", "601332163", "601555642", "36397952", "600287375", "36730261", "39504779", "601555636", "600299706", "33241003", "38626852", "39307948", "601461624", "600243411", "38733032", "4446485", "32061975", "601356371", "39166708", "39298775", "38300904", "38429074", "37228861", "34657844", "38104031", "1556553", "37323944", "601555637", "38629386", "1121123", "600354699", "38123332", "30962526", "31927275", "36699489", "38242510", "38123338", "38071559", "37375706", "37390939", "600359330", "39156202", "30232719", "600513208", "37323943", "38635449", "31666417", "601555640", "601379618"];
 
@@ -44,11 +44,10 @@
         }
 
         const exposurePatterns = [3, 4, 2, 5, 3, 4, 5, 2, 4, 3];
-        const TOTAL_TARGET_SONGS = 18; // 1시간당 평균 곡 수
+        const TOTAL_TARGET_SONGS = 18;
 
         for (let i = 0; i < 10; i++) {
             let exposureCount = exposurePatterns[i];
-            // 노출 횟수에 따라 모듈당 일반곡 수를 계산 (전체 합이 약 18곡이 되도록)
             let songsPerModule = Math.round(TOTAL_TARGET_SONGS / exposureCount);
             
             document.write(`
@@ -65,25 +64,24 @@
                 let tempG2 = shuffle([...g2]);
                 let tempG3 = shuffle([...g3]);
 
-                // 동적 사이즈 결정: 타겟곡 1곡을 제외한 나머지 일반곡 채우기
                 let normalSongCount = songsPerModule - 1;
                 for(let s=0; s < normalSongCount; s++) {
                     if(s % 2 === 0) pool.push(tempG1.pop());
                     else pool.push(s % 3 === 0 ? tempG2.pop() : tempG3.pop());
                 }
                 
-                shuffle(pool); // 일반곡 순서 완전 무작위 셔플 (DAC 로직)
+                shuffle(pool); // DAC 로직: 일반곡 완전 셔플
 
-                // 타겟곡 랜덤 삽입 (시작과 끝 제외)
-                let targetPos = Math.floor(Math.random() * (pool.length - 1)) + 1;
+                // 타겟곡 랜덤 삽입: 마지막(pool.length)만 제외하고 0번 인덱스부터 삽입 가능
+                let targetPos = Math.floor(Math.random() * pool.length); 
                 pool.splice(targetPos, 0, targetId);
 
                 let cid = pool.join(',');
 
                 document.write(`
                     <div class="module-box">
-                        <strong>모듈 ${m + 1}</strong><br><small>(${pool.length} Tracks)</small><br><br>
-                        <a href="melonapp://play?menuid=0&ctype=1&cid=${cid}" class="btn btn-aos">AOS / iOS</a>
+                        <strong>모듈 / Module ${m + 1}</strong><br><small>(${pool.length} Tracks)</small><br><br>
+                        <a href="melonapp://play?menuid=0&ctype=1&cid=${cid}" class="btn btn-aos">Android / iOS</a>
                         <a href="melonipad://play/?ctype=1&menuid=0&cid=${cid}" class="btn btn-ios">iPad</a>
                     </div>
                 `);
@@ -93,9 +91,9 @@
     </script>
 
     <div class="footer">
-        (주)스마트데이터복구SDR 기술이사 정밀 검수본 v7.0<br>
-        Time-Synced Variable Module Logic Applied.<br>
-        All General tracks and target positions are randomized per click.
+        (주)스마트데이터복구SDR 기술이사 정밀 검수본 v7.1<br>
+        Target Allowed at Index 0 / Random Positioning Applied.<br>
+        "Add to the end of your playlist" to ensure seamless streaming.
     </div>
 </div>
 
