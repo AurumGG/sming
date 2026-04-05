@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gwyn Dorado Smart Streaming Engine v5.0</title>
+    <style>
+        body { font-family: 'Pretendard', sans-serif; padding: 20px; background-color: #f4f7f6; color: #2c3e50; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 30px; border-radius: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.08); }
+        h1 { text-align: center; color: #00cd3c; margin-bottom: 5px; }
+        .desc { text-align: center; color: #7f8c8d; font-size: 0.9em; margin-bottom: 30px; }
+        .set-card { border: 1px solid #edf2f7; border-radius: 15px; margin-bottom: 25px; overflow: hidden; background: #fff; }
+        .set-header { background: #f8f9fa; padding: 15px 25px; font-weight: bold; border-bottom: 1px solid #edf2f7; display: flex; justify-content: space-between; align-items: center; }
+        .exposure-tag { background: #e8f5e9; color: #2e7d32; padding: 4px 12px; border-radius: 20px; font-size: 0.8em; }
+        .module-container { display: flex; flex-wrap: wrap; gap: 10px; padding: 20px; }
+        .module-box { flex: 1; min-width: 150px; border: 1px dashed #cbd5e0; border-radius: 10px; padding: 15px; text-align: center; }
+        .btn { display: block; padding: 10px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 0.85em; margin-bottom: 8px; transition: 0.2s; }
+        .btn-aos { background-color: #00cd3c; color: white; }
+        .btn-ios { background-color: #00b0ff; color: white; }
+        .btn:hover { opacity: 0.8; transform: scale(1.02); }
+        .footer { margin-top: 40px; text-align: center; font-size: 0.8em; color: #bdc3c7; border-top: 1px solid #eee; padding-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Gwyn Dorado Streaming v5.0</h1>
+    <p class="desc">가변 노출 알고리즘 적용 (시간당 2~5회 랜덤 배치)</p>
+
+    <script>
+        const targetId = "601671374";
+        const g1 = ["600806382", "600770078", "600151797", "600151798", "38875091", "36816030", "600706635", "600656412", "600571771", "600332434", "38875092", "600418516", "600418516"];
+        const g2 = ["601680777", "601684352", "601676007", "601685304", "601675892", "601645177", "601694948", "601685083", "601675891", "601672944", "601683484", "601684109", "601615814", "601674307", "601672040", "601672038", "601615064", "601632440", "601630672", "601641057", "601613152", "601606473", "601631034", "601632766", "601615981", "601630808", "601630617", "601641721", "601630512", "601612734", "601630599", "601631416", "601615337", "601596324", "601628587", "601612718", "601615844", "601615638", "601628585", "601614320", "601604057", "601509058", "601614909", "601612444", "601612646", "601606015", "601603963", "601604267", "601597222"];
+        const g3 = ["601237102", "601013499", "601332163", "601555642", "36397952", "600287375", "36730261", "39504779", "601555636", "600299706", "33241003", "38626852", "39307948", "601461624", "600243411", "38733032", "4446485", "32061975", "601356371", "39166708", "39298775", "38300904", "38429074", "37228861", "34657844", "38104031", "1556553", "37323944", "601555637", "38629386", "1121123", "600354699", "38123332", "30962526", "31927275", "36699489", "38242510", "38123338", "38071559", "37375706", "37390939", "600359330", "39156202", "30232719", "600513208", "37323943", "38635449", "31666417", "601555640", "601379618"];
+
+        let g1Idx = 0, g2Idx = 0, g3Idx = 0;
+
+        // 노출 횟수 패턴 (2회~5회 골고루)
+        const exposurePatterns = [3, 4, 2, 5, 3, 4, 5, 2, 4, 3];
+
+        for (let i = 0; i < 10; i++) {
+            let exposureCount = exposurePatterns[i];
+            document.write(`<div class="set-card"><div class="set-header"><span>SET ${i + 1} (약 60분)</span><span class="exposure-tag">타겟 ${exposureCount}회 노출</span></div><div class="module-container">`);
+
+            for (let m = 0; m < exposureCount; m++) {
+                // 한 모듈당 약 18 / exposureCount 곡 구성
+                let moduleSize = Math.floor(18 / exposureCount);
+                let currentModule = [];
+
+                // 1. 일반곡 채우기
+                for (let s = 0; s < moduleSize - 1; s++) {
+                    if (s % 2 === 0) currentModule.push(g1[g1Idx++ % g1.length]);
+                    else if (s % 3 === 0) currentModule.push(g2[g2Idx++ % g2.length]);
+                    else currentModule.push(g3[g3Idx++ % g3.length]);
+                }
+
+                // 2. 타겟 곡 랜덤 위치 삽입 (시작 0과 끝 length 제외)
+                let targetPos = Math.floor(Math.random() * (currentModule.length - 1)) + 1;
+                currentModule.splice(targetPos, 0, targetId);
+
+                let cid = currentModule.join(',');
+
+                document.write(`
+                    <div class="module-box">
+                        <strong>모듈 ${m + 1}</strong><br><br>
+                        <a href="melonapp://play?menuid=0&ctype=1&cid=${cid}" class="btn btn-aos">Android/iOS</a>
+                        <a href="melonipad://play/?ctype=1&menuid=0&cid=${cid}" class="btn btn-ios">iPad</a>
+                    </div>
+                `);
+            }
+            document.write(`</div></div>`);
+        }
+    </script>
+
+    <div class="footer">
+        (주)스마트데이터복구SDR 기술이사 정밀 검수본<br>
+        Dynamic Random Positioning Algorithm v5.0
+    </div>
+</div>
+
+</body>
+</html>
