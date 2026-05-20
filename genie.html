@@ -1,346 +1,132 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gwyn Dorado One-Tap Streaming Lists for Genie Music</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background: #f3f4f6;
-      color: #111827;
-      font-family: Arial, sans-serif;
-    }
-    .version-card {
-      border: 1px solid #e5e7eb;
-      border-radius: 18px;
-      padding: 24px;
-      margin-bottom: 22px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.05);
-      background: #ffffff;
-    }
-    .version-card h2 {
-      margin: 0 0 10px;
-      font-size: 28px;
-      line-height: 1.3;
-      color: #111827;
-    }
-    .version-card .desc {
-      margin: 0 0 18px;
-      font-size: 15px;
-      line-height: 1.6;
-      color: #4b5563;
-    }
-    .btn-group {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .btn {
-      display: block;
-      padding: 14px 18px;
-      border-radius: 12px;
-      color: #ffffff;
-      text-decoration: none;
-      font-size: 18px;
-      font-weight: bold;
-      text-align: center;
-      line-height: 1.4;
-      word-break: keep-all;
-    }
-    .btn:hover {
-      opacity: 0.92;
-    }
-    .btn-web { background: #10b981; }
-    .btn-android { background: #111827; }
-    .btn-iphone { background: #2563eb; }
-    .summary {
-      margin-top: 16px;
-      padding: 14px 16px;
-      border-radius: 12px;
-      background: #f8fafc;
-      color: #475569;
-      font-size: 14px;
-      line-height: 1.65;
-    }
-    @media (max-width: 640px) {
-      .version-card {
-        padding: 18px;
-        border-radius: 16px;
-      }
-      .version-card h2 {
-        font-size: 24px;
-      }
-      .btn {
-        font-size: 16px;
-        padding: 12px 14px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gwyn Dorado Smart Streaming (GENIE)</title>
+    <style>
+        body { font-family: 'Pretendard', sans-serif; padding: 20px; background-color: #f3f4f6; color: #111827; }
+        .container { max-width: 950px; margin: 0 auto; background: white; padding: 35px; border-radius: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.06); }
+        h1 { text-align: center; color: #10b981; margin-bottom: 5px; }
+        .desc { text-align: center; color: #4b5563; font-size: 0.95em; margin-bottom: 35px; line-height: 1.6; }
+        .set-card { border: 1px solid #e5e7eb; border-radius: 20px; margin-bottom: 30px; background: #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.03); }
+        .set-header { background: #f8fafc; padding: 15px 25px; font-weight: bold; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center; border-radius: 20px 20px 0 0; }
+        .exposure-tag { background: #eef6ff; color: #2563eb; padding: 5px 14px; border-radius: 25px; font-size: 0.85em; }
+        .module-container { display: flex; flex-wrap: wrap; gap: 15px; padding: 25px; justify-content: center; }
+        .module-box { flex: 1; min-width: 200px; max-width: 260px; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 15px; padding: 15px; text-align: center; }
+        .btn { display: block; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 0.85em; margin-bottom: 8px; transition: 0.2s; color: white; text-align: center; }
+        .btn-web { background-color: #10b981; }
+        .btn-android { background-color: #111827; }
+        .btn-ios { background-color: #2563eb; }
+        .footer { margin-top: 50px; text-align: center; font-size: 0.85em; color: #94a3b8; border-top: 1px solid #f1f5f9; padding-top: 25px; line-height: 1.6; }
+    </style>
 </head>
-<body style="margin:0; background:#f3f4f6;">
-<div style="max-width:900px; margin:30px auto; padding:24px; font-family:Arial, sans-serif; background:#ffffff; color:#111827;">
-  <div style="text-align:center; margin-bottom:28px;">
-    <h1 style="margin:0 0 10px; font-size:34px;">Gwyn Dorado One-Tap Streaming Lists for Genie Music</h1>
-    <p style="margin:0; font-size:16px; color:#4b5563;">
-      Choose the version that best fits your mood and keep your listening sessions fresh.
+<body>
+
+<div class="container">
+    <h1>Gwyn Dorado Streaming (GENIE)</h1>
+    <p class="desc">
+        <strong>시간 동기화 가변 엔진 (지니뮤직 전용)</strong><br>
+        클릭 시 중복 곡이 포함된 총 18 트랙의 플레이리스트가 지니 앱에 그대로 담깁니다.<br>
+        매번 새로고침할 때마다 완전히 새로운 규칙으로 리스트가 재생성됩니다.
     </p>
-  </div>
 
-  <div style="margin-bottom:24px; padding:16px 18px; border-radius:14px; background:#eef6ff; color:#334155; font-size:14px; line-height:1.7;">
-    <strong style="color:#111827;">How to use</strong><br>
-    Pick any version below and open it on Genie Web, Android, or iPhone. Each version uses the same overall song pool but changes the order so the listening flow feels different across sessions.
-  </div>
+    <script>
+        // =========================================================================
+        // [데이터 설정 영역] 
+        // 1. targetId: 추후 음원이 발매되면 발매된 타겟 곡의 고유 ID 숫자를 적어주세요.
+        // 2. g1: 제공해주신 이미지 속 11개의 Song ID 목록입니다.
+        // =========================================================================
+        const targetId = "YOUR_TARGET_ID_HERE"; 
+        const g1 = ["112807970", "113204604", "113265479", "111876440", "114452487", "109967000", "103604435", "113094114", "112316643", "112996079", "111876441"];
+        
+        // 총 18곡을 채우기 위한 기준점
+        const TOTAL_TRACKS = 18; 
 
-  <div style="border:1px solid #e5e7eb; border-radius:18px; padding:24px; margin-bottom:22px; box-shadow:0 4px 14px rgba(0,0,0,0.05);">
-    <h2 style="margin:0 0 10px; font-size:28px;">Version 1</h2>
-    <p style="margin:0 0 18px; font-size:15px; color:#4b5563;">Balanced 50-track playlist version with Genie Web, Android, and iPhone links.</p>
-    <div style="display:flex; flex-direction:column; gap:12px;">
-      <a href="https://www.genie.co.kr/player/shareProcessV2?xgnm=114452487;113265479;114505374;113204604;114510010;111876440;114452487;113094114;114523503;109967000;113265479;112996079;114509414;114452487;103604435;112807970;114510954;113204604;114452487;112316643;114509545;111876440;112996079;114495196;114452487;113265479;112807970;114494203;113094114;109967000;114452487;114490495;113204604;103604435;114509404;114452487;111876440;114461689;112996079;112316643;114439539;113265479;112807970;114452487;114397327;113094114;101514417;113204604;114452487;114494601" target="_blank" rel="noopener noreferrer" style="display:block; padding:14px 18px; border-radius:12px; background:#10b981; color:#ffffff; text-decoration:none; font-size:18px; font-weight:bold; text-align:center;">Open Version 1 on Genie Web</a>
-      <a href="cromegenie://scan/?landing_type=31&amp;landing_target=114452487;113265479;114505374;113204604;114510010;111876440;114452487;113094114;114523503;109967000;113265479;112996079;114509414;114452487;103604435;112807970;114510954;113204604;114452487;112316643;114509545;111876440;112996079;114495196;114452487;113265479;112807970;114494203;113094114;109967000;114452487;114490495;113204604;103604435;114509404;114452487;111876440;114461689;112996079;112316643;114439539;113265479;112807970;114452487;114397327;113094114;101514417;113204604;114452487;114494601" style="display:block; padding:14px 18px; border-radius:12px; background:#111827; color:#ffffff; text-decoration:none; font-size:18px; font-weight:bold; text-align:center;">Open Version 1 in Genie App for Android</a>
-      <a href="ktolleh00167://landing/?landing_type=31&amp;landing_target=114452487;113265479;114505374;113204604;114510010;111876440;114452487;113094114;114523503;109967000;113265479;112996079;114509414;114452487;103604435;112807970;114510954;113204604;114452487;112316643;114509545;111876440;112996079;114495196;114452487;113265479;112807970;114494203;113094114;109967000;114452487;114490495;113204604;103604435;114509404;114452487;111876440;114461689;112996079;112316643;114439539;113265479;112807970;114452487;114397327;113094114;101514417;113204604;114452487;114494601" style="display:block; padding:14px 18px; border-radius:12px; background:#2563eb; color:#ffffff; text-decoration:none; font-size:18px; font-weight:bold; text-align:center;">Open Version 1 in Genie App for iPhone</a>
-    </div>
-    <div style="margin-top:16px; padding:14px 16px; border-radius:12px; background:#f8fafc; color:#475569; font-size:14px; line-height:1.65;">
-      <strong style="color:#111827;">Version 1 summary</strong><br>
-      Total tracks: 50<br>
-      Purple Love plays: 9
-    </div>
-  </div>
+        // 각 세트별 타겟 곡의 진입 횟수 패턴 설정 (원하는 수치로 자유롭게 변경 가능)
+        const exposurePatterns = [3, 4, 5, 6, 4, 3, 4, 5, 3, 4];
 
-  <div style="border:1px solid #e5e7eb; border-radius:18px; padding:24px; margin-bottom:22px; box-shadow:0 4px 14px rgba(0,0,0,0.05);">
-    <h2 style="margin:0 0 10px; font-size:28px;">Version 2</h2>
-    <p style="margin:0 0 18px; font-size:15px; color:#4b5563;">Alternate 50-track playlist version with a different song order.</p>
-    <div style="display:flex; flex-direction:column; gap:12px;">
-      <a href="https://www.genie.co.kr/player/shareProcessV2?xgnm=113265479;111876440;114505374;114452487;109967000;114510010;113204604;113094114;112807970;114452487;112996079;114523503;112316643;103604435;114510954;114452487;113265479;114509545;111876440;114509414;114452487;113204604;114495196;109967000;112807970;114494203;113094114;114452487;112996079;114461689;103604435;114509404;114452487;113265479;112316643;114439539;111876440;113204604;114452487;112807970;114490495;114397327;112996079;113265479;114452487;113094114;101514417;113204604;114452487;114494601" target="_blank" rel="noopener noreferrer" style="display:block; padding:14px 18px; border-radius:12px; background:#10b981; color:#ffffff; text-decoration:none; font-size:18px; font-weight:bold; text-align:center;">Open Version 2 on Genie Web</a>
-      <a href="cromegenie://scan/?landing_type=31&amp;landing_target=113265479;111876440;114505374;114452487;109967000;114510010;113204604;113094114;112807970;114452487;112996079;114523503;112316643;103604435;114510954;114452487;113265479;114509545;111876440;114509414;114452487;113204604;114495196;109967000;112807970;114494203;113094114;114452487;112996079;114461689;103604435;114509404;114452487;113265479;112316643;114439539;111876440;113204604;114452487;112807970;114490495;114397327;112996079;113265479;114452487;113094114;101514417;113204604;114452487;114494601" style="display:block; padding:14px 18px; border-radius:12px; background:#111827; color:#ffffff; text-decoration:none; font-size:18px; font-weight:bold; text-align:center;">Open Version 2 in Genie App for Android</a>
-      <a href="ktolleh00167://landing/?landing_type=31&amp;landing_target=113265479;111876440;114505374;114452487;109967000;114510010;113204604;113094114;112807970;114452487;112996079;114523503;112316643;103604435;114510954;114452487;113265479;114509545;111876440;114509414;114452487;113204604;114495196;109967000;112807970;114494203;113094114;114452487;112996079;114461689;103604435;114509404;114452487;113265479;112316643;114439539;111876440;113204604;114452487;112807970;114490495;114397327;112996079;113265479;114452487;113094114;101514417;113204604;114452487;114494601" style="display:block; padding:14px 18px; border-radius:12px; background:#2563eb; color:#ffffff; text-decoration:none; font-size:18px; font-weight:bold; text-align:center;">Open Version 2 in Genie App for iPhone</a>
-    </div>
-    <div style="margin-top:16px; padding:14px 16px; border-radius:12px; background:#f8fafc; color:#475569; font-size:14px; line-height:1.65;">
-      <strong style="color:#111827;">Version 2 summary</strong><br>
-      Total tracks: 50<br>
-      Purple Love plays: 9
-    </div>
-  </div>
+        // 배열 복사 및 무작위 셔플 함수
+        function shuffle(array) {
+            let arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
 
-  <div style="border:1px solid #e5e7eb; border-radius:18px; padding:24px; margin-bottom:22px; box-shadow:0 4px 14px rgba(0,0,0,0.05);">
-    <h2 style="margin:0 0 10px; font-size:28px;">Version 3</h2>
-    <p style="margin:0 0 18px; font-size:15px; color:#4b5563;">A brighter shuffle that brings the title track back more often and keeps the flow lively.</p>
-    <div style="display:flex; flex-direction:column; gap:12px;">
-      <a href="https://www.genie.co.kr/player/shareProcessV2?xgnm=114452487;113265479;114505374;113204604;114452487;114510010;111876440;114523503;114452487;113094114;109967000;112996079;114452487;114509414;103604435;112807970;114452487;114510954;113204604;112316643;114452487;114509545;111876440;114495196;114452487;113265479;109967000;114494203;114452487;114490495;103604435;114509404;114452487;112996079;114461689;112807970;114452487;114439539;111876440;114452487;113265479;114397327;113094114;114452487;101514417;113204604;114510010;114452487;114494601;112316643" target="_blank" rel="noopener noreferrer" style="display:block; padding:14px 18px; border-radius:12px; background:#10b981; color:#ffffff; text-decoration:none; font-size:18px; font-weight:bold; text-align:center;">Open Version 3 on Genie Web</a>
-      <a href="cromegenie://scan/?landing_type=31&amp;landing_target=114452487;113265479;114505374;113204604;114452487;114510010;111876440;114523503;114452487;113094114;109967000;112996079;114452487;114509414;103604435;112807970;114452487;114510954;113204604;112316643;114452487;114509545;111876440;114495196;114452487;113265479;109967000;114494203;114452487;114490495;103604435;114509404;114452487;112996079;114461689;112807970;114452487;114439539;111876440;114452487;113265479;114397327;113094114;114452487;101514417;113204604;114510010;114452487;114494601;112316643" style="display:block; padding:14px 18px; border-radius:12px; background:#111827; color:#ffffff; text-decoration:none; font-size:18px; font-weight:bold; text-align:center;">Open Version 3 in Genie App for Android</a>
-      <a href="ktolleh00167://landing/?landing_type=31&amp;landing_target=114452487;113265479;114505374;113204604;114452487;114510010;111876440;114523503;114452487;113094114;109967000;112996079;114452487;114509414;103604435;112807970;114452487;114510954;113204604;112316643;114452487;114509545;111876440;114495196;114452487;113265479;109967000;114494203;114452487;114490495;103604435;114509404;114452487;112996079;114461689;112807970;114452487;114439539;111876440;114452487;113265479;114397327;113094114;114452487;101514417;113204604;114510010;114452487;114494601;112316643" style="display:block; padding:14px 18px; border-radius:12px; background:#2563eb; color:#ffffff; text-decoration:none; font-size:18px; font-weight:bold; text-align:center;">Open Version 3 in Genie App for iPhone</a>
-    </div>
-    <div style="margin-top:16px; padding:14px 16px; border-radius:12px; background:#f8fafc; color:#475569; font-size:14px; line-height:1.65;">
-      <strong style="color:#111827;">Version 3 summary</strong><br>
-      Total tracks: 50<br>
-      Purple Love plays: 13
-    </div>
-  </div>
+        // 패턴 배열의 길이에 맞게 가변적으로 세트 카드 생성
+        for (let i = 0; i < exposurePatterns.length; i++) {
+            let exposureCount = exposurePatterns[i]; 
 
-  <div style="border:1px solid #e5e7eb; border-radius:18px; padding:24px; margin-bottom:22px; box-shadow:0 4px 14px rgba(0,0,0,0.05);">
-    <h2 style="margin:0 0 10px; font-size:28px;">Version 4</h2>
-    <p style="margin:0 0 18px; font-size:15px; color:#4b5563;">A punchier 50-track mix with a slightly more front-loaded sing-along feel.</p>
-    <div style="display:flex; flex-direction:column; gap:12px;">
-      <a href="https://www.genie.co.kr/player/shareProcessV2?xgnm=114452487;113265479;114510010;111876440;114452487;113204604;114505374;114452487;109967000;112996079;114523503;114452487;103604435;112807970;113094114;114452487;114509414;114510954;112316643;114452487;114509545;114495196;113265479;114452487;111876440;113204604;109967000;114452487;114494203;112996079;114490495;114452487;103604435;114509404;114461689;114452487;112807970;114439539;114452487;113265479;111876440;113204604;114452487;114397327;113094114;101514417;114452487;112316643;114494601;114510010" target="_blank" rel="noopener noreferrer" style="display:block; padding:14px 18px; border-radius:12px; background:#10b981; color:#ffffff; text-decoration:none; font-size:18px; font-weight:bold; text-align:center;">Open Version 4 on Genie Web</a>
-      <a href="cromegenie://scan/?landing_type=31&amp;landing_target=114452487;113265479;114510010;111876440;114452487;113204604;114505374;114452487;109967000;112996079;114523503;114452487;103604435;112807970;113094114;114452487;114509414;114510954;112316643;114452487;114509545;114495196;113265479;114452487;111876440;113204604;109967000;114452487;114494203;112996079;114490495;114452487;103604435;114509404;114461689;114452487;112807970;114439539;114452487;113265479;111876440;113204604;114452487;114397327;113094114;101514417;114452487;112316643;114494601;114510010" style="display:block; padding:14px 18px; border-radius:12px; background:#111827; color:#ffffff; text-decoration:none; font-size:18px; font-weight:bold; text-align:center;">Open Version 4 in Genie App for Android</a>
-      <a href="ktolleh00167://landing/?landing_type=31&amp;landing_target=114452487;113265479;114510010;111876440;114452487;113204604;114505374;114452487;109967000;112996079;114523503;114452487;103604435;112807970;113094114;114452487;114509414;114510954;112316643;114452487;114509545;114495196;113265479;114452487;111876440;113204604;109967000;114452487;114494203;112996079;114490495;114452487;103604435;114509404;114461689;114452487;112807970;114439539;114452487;113265479;111876440;113204604;114452487;114397327;113094114;101514417;114452487;112316643;114494601;114510010" style="display:block; padding:14px 18px; border-radius:12px; background:#2563eb; color:#ffffff; text-decoration:none; font-size:18px; font-weight:bold; text-align:center;">Open Version 4 in Genie App for iPhone</a>
-    </div>
-    <div style="margin-top:16px; padding:14px 16px; border-radius:12px; background:#f8fafc; color:#475569; font-size:14px; line-height:1.65;">
-      <strong style="color:#111827;">Version 4 summary</strong><br>
-      Total tracks: 50<br>
-      Purple Love plays: 13
-    </div>
-  </div>
+            document.write(`
+                <div class="set-card">
+                    <div class="set-header">
+                        <span>SET ${i + 1} (총 18트랙 고정 / 1-Hour Round)</span>
+                        <span class="exposure-tag">타겟 곡 ${exposureCount}회 중복 노출</span>
+                    </div>
+                    <div class="module-container">`);
 
-  <div style="border:1px solid #e5e7eb; border-radius:18px; padding:24px; margin-bottom:22px; box-shadow:0 4px 14px rgba(0,0,0,0.05);">
-    <h2 style="margin:0 0 10px; font-size:28px;">Version 5</h2>
-    <p style="margin:0 0 18px; font-size:15px; color:#4b5563;">A soft-start version with smoother early transitions for relaxed repeat listening.</p>
-    <div style="display:flex; flex-direction:column; gap:12px;">
-      <a href="https://www.genie.co.kr/player/shareProcessV2?xgnm=112996079;114509414;114452487;103604435;113265479;114505374;113204604;114510010;114452487;113265479;114509545;111876440;112996079;114495196;114452487;114523503;109967000;111876440;114452487;113094114;114490495;113204604;103604435;114509404;114452487;112316643;112807970;114510954;113204604;114452487;112807970;114452487;114397327;114439539;113265479;113265479;112807970;114494203;113094114;109967000;114452487;114494601;113094114;101514417;113204604;111876440;114461689;112996079;112316643;114452487" target="_blank" rel="noopener noreferrer" style="display:block; padding:14px 18px; border-radius:12px; background:#10b981; color:#ffffff; text-decoration:none; font-size:18px; font-weight:bold; text-align:center;">Open Version 5 on Genie Web</a>
-      <a href="cromegenie://scan/?landing_type=31&amp;landing_target=112996079;114509414;114452487;103604435;113265479;114505374;113204604;114510010;114452487;113265479;114509545;111876440;112996079;114495196;114452487;114523503;109967000;111876440;114452487;113094114;114490495;113204604;103604435;114509404;114452487;112316643;112807970;114510954;113204604;114452487;112807970;114452487;114397327;114439539;113265479;113265479;112807970;114494203;113094114;109967000;114452487;114494601;113094114;101514417;113204604;111876440;114461689;112996079;112316643;114452487" style="display:block; padding:14px 18px; border-radius:12px; background:#111827; color:#ffffff; text-decoration:none; font-size:18px; font-weight:bold; text-align:center;">Open Version 5 in Genie App for Android</a>
-      <a href="ktolleh00167://landing/?landing_type=31&amp;landing_target=112996079;114509414;114452487;103604435;113265479;114505374;113204604;114510010;114452487;113265479;114509545;111876440;112996079;114495196;114452487;114523503;109967000;111876440;114452487;113094114;114490495;113204604;103604435;114509404;114452487;112316643;112807970;114510954;113204604;114452487;112807970;114452487;114397327;114439539;113265479;113265479;112807970;114494203;113094114;109967000;114452487;114494601;113094114;101514417;113204604;111876440;114461689;112996079;112316643;114452487" style="display:block; padding:14px 18px; border-radius:12px; background:#2563eb; color:#ffffff; text-decoration:none; font-size:18px; font-weight:bold; text-align:center;">Open Version 5 in Genie App for iPhone</a>
-    </div>
-    <div style="margin-top:16px; padding:14px 16px; border-radius:12px; background:#f8fafc; color:#475569; font-size:14px; line-height:1.65;">
-      <strong style="color:#111827;">Version 5 summary</strong><br>
-      Total tracks: 50<br>
-      Purple Love plays: 9
-    </div>
-  </div>
+            for (let m = 0; m < exposureCount; m++) {
+                let pool = [];
+                
+                // [정밀 보정]: 처음부터 18곡 공간 중 '타겟 곡이 들어갈 영역'을 뺀 나머지만큼 일반 곡을 뽑습니다.
+                let normalSongCount = TOTAL_TRACKS - exposureCount; 
 
-  <div style="border:1px solid #e5e7eb; border-radius:18px; padding:24px; margin-bottom:22px; box-shadow:0 4px 14px rgba(0,0,0,0.05);">
-    <h2 style="margin:0 0 10px; font-size:28px;">Version 6</h2>
-    <p style="margin:0 0 18px; font-size:15px; color:#4b5563;">A mid-energy blend that alternates moods more quickly and keeps the pace fresh.</p>
-    <div style="display:flex; flex-direction:column; gap:12px;">
-      <a href="https://www.genie.co.kr/player/shareProcessV2?xgnm=113265479;114452487;113204604;114505374;111876440;114510010;113094114;114452487;109967000;114523503;112996079;113265479;114452487;114509414;112807970;103604435;113204604;114510954;112316643;114452487;111876440;114509545;114495196;112996079;113265479;114452487;114494203;112807970;109967000;113094114;114490495;114452487;103604435;113204604;114452487;114509404;114461689;111876440;112316643;112996079;113265479;114439539;114452487;112807970;113094114;114397327;113204604;101514417;114494601;114452487" target="_blank" rel="noopener noreferrer" style="display:block; padding:14px 18px; border-radius:12px; background:#10b981; color:#ffffff; text-decoration:none; font-size:18px; font-weight:bold; text-align:center;">Open Version 6 on Genie Web</a>
-      <a href="cromegenie://scan/?landing_type=31&amp;landing_target=113265479;114452487;113204604;114505374;111876440;114510010;113094114;114452487;109967000;114523503;112996079;113265479;114452487;114509414;112807970;103604435;113204604;114510954;112316643;114452487;111876440;114509545;114495196;112996079;113265479;114452487;114494203;112807970;109967000;113094114;114490495;114452487;103604435;113204604;114452487;114509404;114461689;111876440;112316643;112996079;113265479;114439539;114452487;112807970;113094114;114397327;113204604;101514417;114494601;114452487" style="display:block; padding:14px 18px; border-radius:12px; background:#111827; color:#ffffff; text-decoration:none; font-size:18px; font-weight:bold; text-align:center;">Open Version 6 in Genie App for Android</a>
-      <a href="ktolleh00167://landing/?landing_type=31&amp;landing_target=113265479;114452487;113204604;114505374;111876440;114510010;113094114;114452487;109967000;114523503;112996079;113265479;114452487;114509414;112807970;103604435;113204604;114510954;112316643;114452487;111876440;114509545;114495196;112996079;113265479;114452487;114494203;112807970;109967000;113094114;114490495;114452487;103604435;113204604;114452487;114509404;114461689;111876440;112316643;112996079;113265479;114439539;114452487;112807970;113094114;114397327;113204604;101514417;114494601;114452487" style="display:block; padding:14px 18px; border-radius:12px; background:#2563eb; color:#ffffff; text-decoration:none; font-size:18px; font-weight:bold; text-align:center;">Open Version 6 in Genie App for iPhone</a>
-    </div>
-    <div style="margin-top:16px; padding:14px 16px; border-radius:12px; background:#f8fafc; color:#475569; font-size:14px; line-height:1.65;">
-      <strong style="color:#111827;">Version 6 summary</strong><br>
-      Total tracks: 50<br>
-      Purple Love plays: 9
-    </div>
-  </div>
+                // 1. 필요한 순수 일반 곡 개수만큼 채우기 (모자라면 중복 추출)
+                let tempNormalSongs = shuffle(g1);
+                for (let s = 0; s < normalSongCount; s++) {
+                    if (tempNormalSongs.length === 0) {
+                        tempNormalSongs = shuffle(g1); 
+                    }
+                    pool.push(tempNormalSongs.pop());
+                }
 
-  <div style="border:1px solid #e5e7eb; border-radius:18px; padding:24px; margin-bottom:22px; box-shadow:0 4px 14px rgba(0,0,0,0.05);">
-    <h2 style="margin:0 0 10px; font-size:28px;">Version 7</h2>
-    <p style="margin:0 0 18px; font-size:15px; color:#4b5563;">A reshuffled momentum mix that changes the listening arc without changing the song pool.</p>
-    <div style="display:flex; flex-direction:column; gap:12px;">
-      <a href="https://www.genie.co.kr/player/shareProcessV2?xgnm=114494601;114452487;113204604;101514417;113094114;114439539;113265479;112807970;114452487;114397327;112316643;112996079;114461689;111876440;114452487;114452487;114490495;113204604;103604435;114509404;109967000;113094114;114494203;112807970;113265479;114509545;111876440;112996079;114495196;114452487;112316643;114452487;113204604;114510954;112807970;113265479;112996079;114509414;114452487;103604435;109967000;114523503;113094114;114452487;111876440;114452487;113265479;114505374;113204604;114510010" target="_blank" rel="noopener noreferrer" style="display:block; padding:14px 18px; border-radius:12px; background:#10b981; color:#ffffff; text-decoration:none; font-size:18px; font-weight:bold; text-align:center;">Open Version 7 on Genie Web</a>
-      <a href="cromegenie://scan/?landing_type=31&amp;landing_target=114494601;114452487;113204604;101514417;113094114;114439539;113265479;112807970;114452487;114397327;112316643;112996079;114461689;111876440;114452487;114452487;114490495;113204604;103604435;114509404;109967000;113094114;114494203;112807970;113265479;114509545;111876440;112996079;114495196;114452487;112316643;114452487;113204604;114510954;112807970;113265479;112996079;114509414;114452487;103604435;109967000;114523503;113094114;114452487;111876440;114452487;113265479;114505374;113204604;114510010" style="display:block; padding:14px 18px; border-radius:12px; background:#111827; color:#ffffff; text-decoration:none; font-size:18px; font-weight:bold; text-align:center;">Open Version 7 in Genie App for Android</a>
-      <a href="ktolleh00167://landing/?landing_type=31&amp;landing_target=114494601;114452487;113204604;101514417;113094114;114439539;113265479;112807970;114452487;114397327;112316643;112996079;114461689;111876440;114452487;114452487;114490495;113204604;103604435;114509404;109967000;113094114;114494203;112807970;113265479;114509545;111876440;112996079;114495196;114452487;112316643;114452487;113204604;114510954;112807970;113265479;112996079;114509414;114452487;103604435;109967000;114523503;113094114;114452487;111876440;114452487;113265479;114505374;113204604;114510010" style="display:block; padding:14px 18px; border-radius:12px; background:#2563eb; color:#ffffff; text-decoration:none; font-size:18px; font-weight:bold; text-align:center;">Open Version 7 in Genie App for iPhone</a>
-    </div>
-    <div style="margin-top:16px; padding:14px 16px; border-radius:12px; background:#f8fafc; color:#475569; font-size:14px; line-height:1.65;">
-      <strong style="color:#111827;">Version 7 summary</strong><br>
-      Total tracks: 50<br>
-      Purple Love plays: 9
-    </div>
-  </div>
+                // 2. 지정된 할당량(exposureCount)만큼 타겟 곡 ID를 배열에 추가 (이제 정확히 총 18곡이 됩니다)
+                for (let t = 0; t < exposureCount; t++) {
+                    pool.push(targetId);
+                }
 
-  <div style="border:1px solid #e5e7eb; border-radius:18px; padding:24px; margin-bottom:22px; box-shadow:0 4px 14px rgba(0,0,0,0.05);">
-    <h2 style="margin:0 0 10px; font-size:28px;">Version 8</h2>
-    <p style="margin:0 0 18px; font-size:15px; color:#4b5563;">A calmer long-play order designed to feel easy and less repetitive over time.</p>
-    <div style="display:flex; flex-direction:column; gap:12px;">
-      <a href="https://www.genie.co.kr/player/shareProcessV2?xgnm=113265479;114505374;114452487;114510010;111876440;113204604;113094114;114523503;114452487;113265479;112996079;109967000;114452487;103604435;114509414;114510954;113204604;112807970;112316643;114509545;114452487;112996079;114495196;111876440;113265479;112807970;114452487;113094114;109967000;114494203;114490495;113204604;114452487;114509404;114452487;103604435;114461689;112996079;111876440;114439539;113265479;112316643;114452487;114397327;112807970;101514417;113204604;113094114;114494601;114452487" target="_blank" rel="noopener noreferrer" style="display:block; padding:14px 18px; border-radius:12px; background:#10b981; color:#ffffff; text-decoration:none; font-size:18px; font-weight:bold; text-align:center;">Open Version 8 on Genie Web</a>
-      <a href="cromegenie://scan/?landing_type=31&amp;landing_target=113265479;114505374;114452487;114510010;111876440;113204604;113094114;114523503;114452487;113265479;112996079;109967000;114452487;103604435;114509414;114510954;113204604;112807970;112316643;114509545;114452487;112996079;114495196;111876440;113265479;112807970;114452487;113094114;109967000;114494203;114490495;113204604;114452487;114509404;114452487;103604435;114461689;112996079;111876440;114439539;113265479;112316643;114452487;114397327;112807970;101514417;113204604;113094114;114494601;114452487" style="display:block; padding:14px 18px; border-radius:12px; background:#111827; color:#ffffff; text-decoration:none; font-size:18px; font-weight:bold; text-align:center;">Open Version 8 in Genie App for Android</a>
-      <a href="ktolleh00167://landing/?landing_type=31&amp;landing_target=113265479;114505374;114452487;114510010;111876440;113204604;113094114;114523503;114452487;113265479;112996079;109967000;114452487;103604435;114509414;114510954;113204604;112807970;112316643;114509545;114452487;112996079;114495196;111876440;113265479;112807970;114452487;113094114;109967000;114494203;114490495;113204604;114452487;114509404;114452487;103604435;114461689;112996079;111876440;114439539;113265479;112316643;114452487;114397327;112807970;101514417;113204604;113094114;114494601;114452487" style="display:block; padding:14px 18px; border-radius:12px; background:#2563eb; color:#ffffff; text-decoration:none; font-size:18px; font-weight:bold; text-align:center;">Open Version 8 in Genie App for iPhone</a>
-    </div>
-    <div style="margin-top:16px; padding:14px 16px; border-radius:12px; background:#f8fafc; color:#475569; font-size:14px; line-height:1.65;">
-      <strong style="color:#111827;">Version 8 summary</strong><br>
-      Total tracks: 50<br>
-      Purple Love plays: 9
-    </div>
-  </div>
+                // 3. 전체 목록 무작위 대형 셔플
+                pool = shuffle(pool);
 
-  <div style="border:1px solid #e5e7eb; border-radius:18px; padding:24px; margin-bottom:22px; box-shadow:0 4px 14px rgba(0,0,0,0.05);">
-    <h2 style="margin:0 0 10px; font-size:28px;">Version 9</h2>
-    <p style="margin:0 0 18px; font-size:15px; color:#4b5563;">A varied end-weighted sequence for a different finish and a fresh replay feel.</p>
-    <div style="display:flex; flex-direction:column; gap:12px;">
-      <a href="https://www.genie.co.kr/player/shareProcessV2?xgnm=114452487;113265479;114505374;113204604;114510010;114452487;113204604;101514417;113094114;114494601;113094114;114452487;111876440;109967000;114523503;114452487;114397327;114439539;113265479;112807970;103604435;113265479;112996079;114509414;114452487;112316643;112996079;114461689;111876440;114452487;114452487;113204604;114510954;112807970;112316643;113204604;103604435;114509404;114452487;114490495;114495196;114452487;114509545;111876440;112996079;113265479;109967000;113094114;114494203;112807970" target="_blank" rel="noopener noreferrer" style="display:block; padding:14px 18px; border-radius:12px; background:#10b981; color:#ffffff; text-decoration:none; font-size:18px; font-weight:bold; text-align:center;">Open Version 9 on Genie Web</a>
-      <a href="cromegenie://scan/?landing_type=31&amp;landing_target=114452487;113265479;114505374;113204604;114510010;114452487;113204604;101514417;113094114;114494601;113094114;114452487;111876440;109967000;114523503;114452487;114397327;114439539;113265479;112807970;103604435;113265479;112996079;114509414;114452487;112316643;112996079;114461689;111876440;114452487;114452487;113204604;114510954;112807970;112316643;113204604;103604435;114509404;114452487;114490495;114495196;114452487;114509545;111876440;112996079;113265479;109967000;113094114;114494203;112807970" style="display:block; padding:14px 18px; border-radius:12px; background:#111827; color:#ffffff; text-decoration:none; font-size:18px; font-weight:bold; text-align:center;">Open Version 9 in Genie App for Android</a>
-      <a href="ktolleh00167://landing/?landing_type=31&amp;landing_target=114452487;113265479;114505374;113204604;114510010;114452487;113204604;101514417;113094114;114494601;113094114;114452487;111876440;109967000;114523503;114452487;114397327;114439539;113265479;112807970;103604435;113265479;112996079;114509414;114452487;112316643;112996079;114461689;111876440;114452487;114452487;113204604;114510954;112807970;112316643;113204604;103604435;114509404;114452487;114490495;114495196;114452487;114509545;111876440;112996079;113265479;109967000;113094114;114494203;112807970" style="display:block; padding:14px 18px; border-radius:12px; background:#2563eb; color:#ffffff; text-decoration:none; font-size:18px; font-weight:bold; text-align:center;">Open Version 9 in Genie App for iPhone</a>
-    </div>
-    <div style="margin-top:16px; padding:14px 16px; border-radius:12px; background:#f8fafc; color:#475569; font-size:14px; line-height:1.65;">
-      <strong style="color:#111827;">Version 9 summary</strong><br>
-      Total tracks: 50<br>
-      Purple Love plays: 9
-    </div>
-  </div>
+                // 4. 안전장치: 맨 마지막 트랙이 타겟 곡일 경우, 완벽한 예외 처리를 위해 일반 곡이 나올 때까지 셔플을 반복하거나 위치 교환
+                if (pool[pool.length - 1] === targetId) {
+                    for (let s = 0; s < pool.length - 1; s++) {
+                        if (pool[s] !== targetId) {
+                            [pool[s], pool[pool.length - 1]] = [pool[pool.length - 1], pool[s]];
+                            break;
+                        }
+                    }
+                }
 
-<div class="version-card">
-    <h2>Version 10 (Deep Emotion)</h2>
-    <p class="desc">48 tracks | A blend of Gwyn's deep emotion and gentle indie songs</p>
-    <div class="btn-group">
-      <a href="https://www.genie.co.kr/player/shareProcessV2?xgnm=114452487;113265478;113204604;113094114;114523503;114452487;112996079;112807970;112316643;114510954;114452487;111876440;109967000;103604435;114510010;114452487;113265479;113265478;113204604;114509545;114452487;113094114;112996079;112807970;114509414;114452487;112316643;111876440;109967000;114509404;114452487;103604435;113265479;113265478;114505374;114452487;113204604;113094114;112996079;114495196;114452487;112807970;112316643;111876440;114494601;114452487;109967000;103604435" target="_blank" class="btn btn-web">Open on Genie Web</a>
-      <a href="cromegenie://scan/?landing_type=31&amp;landing_target=114452487;113265478;113204604;113094114;114523503;114452487;112996079;112807970;112316643;114510954;114452487;111876440;109967000;103604435;114510010;114452487;113265479;113265478;113204604;114509545;114452487;113094114;112996079;112807970;114509414;114452487;112316643;111876440;109967000;114509404;114452487;103604435;113265479;113265478;114505374;114452487;113204604;113094114;112996079;114495196;114452487;112807970;112316643;111876440;114494601;114452487;109967000;103604435" class="btn btn-android">Open in Genie App for Android</a>
-      <a href="ktolleh00167://landing/?landing_type=31&amp;landing_target=114452487;113265478;113204604;113094114;114523503;114452487;112996079;112807970;112316643;114510954;114452487;111876440;109967000;103604435;114510010;114452487;113265479;113265478;113204604;114509545;114452487;113094114;112996079;112807970;114509414;114452487;112316643;111876440;109967000;114509404;114452487;103604435;113265479;113265478;114505374;114452487;113204604;113094114;112996079;114495196;114452487;112807970;112316643;111876440;114494601;114452487;109967000;103604435" class="btn btn-iphone">Open in Genie App for iPhone</a>
-    </div>
-    <div class="summary">Purple Love play frequency: 10 times (about every 4.8 tracks)</div>
-  </div>
+                // 지니 주소창 규격에 맞게 세미콜론(;)으로 곡 ID 연결
+                let cid = pool.join(';');
 
-<div class="version-card">
-    <h2>Version 11</h2>
-    <p class="desc">46 tracks | Centered on Gwyn's emotional voice, perfect for the evening sunset</p>
-    <div class="btn-group">
-      <a href="https://www.genie.co.kr/player/shareProcessV2?xgnm=114452487;113265478;113204604;113791695;114452487;113094114;112996079;113568760;114452487;112807970;112316643;114356078;114452487;111876440;109967000;101514417;114452487;103604435;113265479;103167974;114452487;113265478;113204604;113970278;114452487;113094114;112996079;112223437;114452487;112807970;112316643;110968221;114452487;111876440;109967000;111202261;114452487;103604435;113265479;112239609;114452487;113265478;113204604;114356072;114452487;113094114" target="_blank" class="btn btn-web">Genie Web V11</a>
-      <a href="cromegenie://scan/?landing_type=31&amp;landing_target=114452487;113265478;113204604;113791695;114452487;113094114;112996079;113568760;114452487;112807970;112316643;114356078;114452487;111876440;109967000;101514417;114452487;103604435;113265479;103167974;114452487;113265478;113204604;113970278;114452487;113094114;112996079;112223437;114452487;112807970;112316643;110968221;114452487;111876440;109967000;111202261;114452487;103604435;113265479;112239609;114452487;113265478;113204604;114356072;114452487;113094114" class="btn btn-android">Android V11</a>
-      <a href="ktolleh00167://landing/?landing_type=31&amp;landing_target=114452487;113265478;113204604;113791695;114452487;113094114;112996079;113568760;114452487;112807970;112316643;114356078;114452487;111876440;109967000;101514417;114452487;103604435;113265479;103167974;114452487;113265478;113204604;113970278;114452487;113094114;112996079;112223437;114452487;112807970;112316643;110968221;114452487;111876440;109967000;111202261;114452487;103604435;113265479;112239609;114452487;113265478;113204604;114356072;114452487;113094114" class="btn btn-iphone">iPhone V11</a>
-    </div>
-  </div>
+                // 각 기기별 연동 주소 바인딩
+                let webLink = `https://www.genie.co.kr/player/shareProcessV2?xgnm=${cid}`;
+                let androidLink = `cromegenie://scan/?landing_type=31&landing_target=${cid}`;
+                let iosLink = `ktolleh00167://landing/?landing_type=31&landing_target=${cid}`;
 
-  <div class="version-card">
-    <h2>Version 12</h2>
-    <p class="desc">52 tracks | A track list that heightens immersion late at night</p>
-    <div class="btn-group">
-      <a href="https://www.genie.co.kr/player/shareProcessV2?xgnm=114452487;112996079;112807970;114523503;114452487;112316643;111876440;114510954;114452487;109967000;103604435;114510010;114452487;113265479;113265478;114509545;114452487;113204604;113094114;114509414;114452487;112996079;112807970;114509404;114452487;112316643;111876440;114505374;114452487;109967000;103604435;114495196;114452487;113265479;113265478;114494601;114452487;113204604;113094114;114494203;114452487;112996079;112807970;114490495;114452487;112316643;111876440;114461689;114452487;109967000;103604435;114439539" target="_blank" class="btn btn-web">Genie Web V12</a>
-      <a href="cromegenie://scan/?landing_type=31&amp;landing_target=114452487;112996079;112807970;114523503;114452487;112316643;111876440;114510954;114452487;109967000;103604435;114510010;114452487;113265479;113265478;114509545;114452487;113204604;113094114;114509414;114452487;112996079;112807970;114509404;114452487;112316643;111876440;114505374;114452487;109967000;103604435;114495196;114452487;113265479;113265478;114494601;114452487;113204604;113094114;114494203;114452487;112996079;112807970;114490495;114452487;112316643;111876440;114461689;114452487;109967000;103604435;114439539" class="btn btn-android">Android V12</a>
-      <a href="ktolleh00167://landing/?landing_type=31&amp;landing_target=114452487;112996079;112807970;114523503;114452487;112316643;111876440;114510954;114452487;109967000;103604435;114510010;114452487;113265479;113265478;114509545;114452487;113204604;113094114;114509414;114452487;112996079;112807970;114509404;114452487;112316643;111876440;114505374;114452487;109967000;103604435;114495196;114452487;113265479;113265478;114494601;114452487;113204604;113094114;114494203;114452487;112996079;112807970;114490495;114452487;112316643;111876440;114461689;114452487;109967000;103604435;114439539" class="btn btn-iphone">iPhone V12</a>
-    </div>
-  </div>
+                document.write(`
+                    <div class="module-box">
+                        <strong>모듈 / Module ${m + 1}</strong><br><small>(${pool.length} Tracks)</small><br><br>
+                        <a href="${webLink}" target="_blank" rel="noopener noreferrer" class="btn btn-web">Genie Web</a>
+                        <a href="${androidLink}" class="btn btn-android">Android App</a>
+                        <a href="${iosLink}" class="btn btn-ios">iPhone App</a>
+                    </div>
+                `);
+            }
+            document.write(`</div></div>`);
+        }
+    </script>
 
-<div class="version-card">
-    <h2>Version 13</h2>
-    <p class="desc">45 tracks | Centered on Gwyn Dorado's clear tone for a refreshing morning</p>
-    <div class="btn-group">
-      <a href="https://www.genie.co.kr/player/shareProcessV2?xgnm=114452487;113265478;113204604;114509404;114452487;113094114;112996079;114495196;114452487;112807970;112316643;114494601;114452487;111876440;109967000;114494203;114452487;103604435;113265479;114490495;114452487;113265478;113204604;114461689;114452487;113094114;112996079;114439539;114452487;112807970;112316643;114397327;114452487;111876440;109967000;101514417;114452487;103604435;113265479;113791695;114452487;113265478;113204604;113568760;114452487" target="_blank" class="btn btn-web">Genie Web V13</a>
-      <a href="cromegenie://scan/?landing_type=31&amp;landing_target=114452487;113265478;113204604;114509404;114452487;113094114;112996079;114495196;114452487;112807970;112316643;114494601;114452487;111876440;109967000;114494203;114452487;103604435;113265479;114490495;114452487;113265478;113204604;114461689;114452487;113094114;112996079;114439539;114452487;112807970;112316643;114397327;114452487;111876440;109967000;101514417;114452487;103604435;113265479;113791695;114452487;113265478;113204604;113568760;114452487" class="btn btn-android">Android V13</a>
-      <a href="ktolleh00167://landing/?landing_type=31&amp;landing_target=114452487;113265478;113204604;114509404;114452487;113094114;112996079;114495196;114452487;112807970;112316643;114494601;114452487;111876440;109967000;114494203;114452487;103604435;113265479;114490495;114452487;113265478;113204604;114461689;114452487;113094114;112996079;114439539;114452487;112807970;112316643;114397327;114452487;111876440;109967000;101514417;114452487;103604435;113265479;113791695;114452487;113265478;113204604;113568760;114452487" class="btn btn-iphone">iPhone V13</a>
+    <div class="footer">
+        Target Allowed at Index 0 / Excluded at Last Track.<br>
+        App buttons work only on supported devices with the Genie app installed.
     </div>
-  </div>
-
-  <div class="version-card">
-    <h2>Version 14</h2>
-    <p class="desc">50 tracks | A medium-tempo list that pairs well with hazelnut coffee</p>
-    <div class="btn-group">
-      <a href="https://www.genie.co.kr/player/shareProcessV2?xgnm=114452487;114510010;113265479;113265478;114452487;113204604;113094114;114509545;114452487;112996079;112807970;114509414;114452487;112316643;111876440;114509404;114452487;109967000;103604435;114505374;114452487;113265479;113265478;114495196;114452487;113204604;113094114;114494601;114452487;112996079;112807970;114494203;114452487;112316643;111876440;114490495;114452487;109967000;103604435;114461689;114452487;113265479;113265478;114439539;114452487;113204604;113094114;114397327;114452487;112996079" target="_blank" class="btn btn-web">Genie Web V14</a>
-      <a href="cromegenie://scan/?landing_type=31&amp;landing_target=114452487;114510010;113265479;113265478;114452487;113204604;113094114;114509545;114452487;112996079;112807970;114509414;114452487;112316643;111876440;114509404;114452487;109967000;103604435;114505374;114452487;113265479;113265478;114495196;114452487;113204604;113094114;114494601;114452487;112996079;112807970;114494203;114452487;112316643;111876440;114490495;114452487;109967000;103604435;114461689;114452487;113265479;113265478;114439539;114452487;113204604;113094114;114397327;114452487;112996079" class="btn btn-android">Android V14</a>
-      <a href="ktolleh00167://landing/?landing_type=31&amp;landing_target=114452487;114510010;113265479;113265478;114452487;113204604;113094114;114509545;114452487;112996079;112807970;114509414;114452487;112316643;111876440;114509404;114452487;109967000;103604435;114505374;114452487;113265479;113265478;114495196;114452487;113204604;113094114;114494601;114452487;112996079;112807970;114494203;114452487;112316643;111876440;114490495;114452487;109967000;103604435;114461689;114452487;113265479;113265478;114439539;114452487;113204604;113094114;114397327;114452487;112996079" class="btn btn-iphone">iPhone V14</a>
-    </div>
-  </div>
-
-  <div class="version-card">
-    <h2>Version 15</h2>
-    <p class="desc">55 tracks | An emotional healing mix that pairs well with a sunset view</p>
-    <div class="btn-group">
-      <a href="https://www.genie.co.kr/player/shareProcessV2?xgnm=114452487;113265478;113204604;113094114;114356078;114452487;112996079;112807970;112316643;101514417;114452487;111876440;109967000;103604435;113791695;114452487;113265479;113265478;113204604;113568760;114452487;113094114;112996079;112807970;114523503;114452487;112316643;111876440;109967000;114510954;114452487;103604435;113265479;113265478;114510010;114452487;113204604;113094114;112996079;114509545;114452487;112807970;112316643;111876440;114509414;114452487;109967000;103604435;113265479;114509404;114452487;113265478;113204604;114505374;114452487" target="_blank" class="btn btn-web">Genie Web V15</a>
-      <a href="cromegenie://scan/?landing_type=31&amp;landing_target=114452487;113265478;113204604;113094114;114356078;114452487;112996079;112807970;112316643;101514417;114452487;111876440;109967000;103604435;113791695;114452487;113265479;113265478;113204604;113568760;114452487;113094114;112996079;112807970;114523503;114452487;112316643;111876440;109967000;114510954;114452487;103604435;113265479;113265478;114510010;114452487;113204604;113094114;112996079;114509545;114452487;112807970;112316643;111876440;114509414;114452487;109967000;103604435;113265479;114509404;114452487;113265478;113204604;114505374;114452487" class="btn btn-android">Android V15</a>
-      <a href="ktolleh00167://landing/?landing_type=31&amp;landing_target=114452487;113265478;113204604;113094114;114356078;114452487;112996079;112807970;112316643;101514417;114452487;111876440;109967000;103604435;113791695;114452487;113265479;113265478;113204604;113568760;114452487;113094114;112996079;112807970;114523503;114452487;112316643;111876440;109967000;114510954;114452487;103604435;113265479;113265478;114510010;114452487;113204604;113094114;112996079;114509545;114452487;112807970;112316643;111876440;114509414;114452487;109967000;103604435;113265479;114509404;114452487;113265478;113204604;114505374;114452487" class="btn btn-iphone">iPhone V15</a>
-    </div>
-  </div>
-
-<div class="version-card">
-    <h2>Version 16</h2>
-    <p class="desc">47 tracks | A comfortable ballad blend with Gwyn, like walking through a forest path</p>
-    <div class="btn-group">
-      <a href="https://www.genie.co.kr/player/shareProcessV2?xgnm=114452487;114495196;113265479;113265478;114452487;113204604;113094114;114494601;114452487;112996079;112807970;114494203;114452487;112316643;111876440;114490495;114452487;109967000;103604435;114461689;114452487;113265479;113265478;114439539;114452487;113204604;113094114;114397327;114452487;112996079;112807970;101514417;114452487;112316643;111876440;113791695;114452487;109967000;103604435;113568760;114452487;113265479;113265478;114356078;114452487;113204604;113094114" target="_blank" class="btn btn-web">Genie Web V16</a>
-      <a href="cromegenie://scan/?landing_type=31&amp;landing_target=114452487;114495196;113265479;113265478;114452487;113204604;113094114;114494601;114452487;112996079;112807970;114494203;114452487;112316643;111876440;114490495;114452487;109967000;103604435;114461689;114452487;113265479;113265478;114439539;114452487;113204604;113094114;114397327;114452487;112996079;112807970;101514417;114452487;112316643;111876440;113791695;114452487;109967000;103604435;113568760;114452487;113265479;113265478;114356078;114452487;113204604;113094114" class="btn btn-android">Android V16</a>
-      <a href="ktolleh00167://landing/?landing_type=31&amp;landing_target=114452487;114495196;113265479;113265478;114452487;113204604;113094114;114494601;114452487;112996079;112807970;114494203;114452487;112316643;111876440;114490495;114452487;109967000;103604435;114461689;114452487;113265479;113265478;114439539;114452487;113204604;113094114;114397327;114452487;112996079;112807970;101514417;114452487;112316643;111876440;113791695;114452487;109967000;103604435;113568760;114452487;113265479;113265478;114356078;114452487;113204604;113094114" class="btn btn-iphone">iPhone V16</a>
-    </div>
-  </div>
-
-  <div class="version-card">
-    <h2>Version 17</h2>
-    <p class="desc">49 tracks | A stylish city-night list, great for listening while driving</p>
-    <div class="btn-group">
-      <a href="https://www.genie.co.kr/player/shareProcessV2?xgnm=114452487;113970278;113265479;113265478;114452487;113204604;113094114;112223437;114452487;112996079;112807970;110968221;114452487;112316643;111876440;111202261;114452487;109967000;103604435;112239609;114452487;113265479;113265478;114356072;114452487;113204604;113094114;114161637;114452487;112996079;112807970;110589415;114452487;112316643;111876440;92118774;114452487;109967000;103604435;113986758;114452487;113265479;113265478;112062253;114452487;113204604;113094114;110931419;114452487" target="_blank" class="btn btn-web">Genie Web V17</a>
-      <a href="cromegenie://scan/?landing_type=31&amp;landing_target=114452487;113970278;113265479;113265478;114452487;113204604;113094114;112223437;114452487;112996079;112807970;110968221;114452487;112316643;111876440;111202261;114452487;109967000;103604435;112239609;114452487;113265479;113265478;114356072;114452487;113204604;113094114;114161637;114452487;112996079;112807970;110589415;114452487;112316643;111876440;92118774;114452487;109967000;103604435;113986758;114452487;113265479;113265478;112062253;114452487;113204604;113094114;110931419;114452487" class="btn btn-android">Android V17</a>
-      <a href="ktolleh00167://landing/?landing_type=31&amp;landing_target=114452487;113970278;113265479;113265478;114452487;113204604;113094114;112223437;114452487;112996079;112807970;110968221;114452487;112316643;111876440;111202261;114452487;109967000;103604435;112239609;114452487;113266479;113265478;114356072;114452487;113204604;113094114;114161637;114452487;112996079;112807970;110589415;114452487;112316643;111876440;92118774;114452487;109967000;103604435;113986758;114452487;113265479;113265478;112062253;114452487;113204604;113094114;110931419;114452487" class="btn btn-iphone">iPhone V17</a>
-    </div>
-  </div>
-
-  <div class="version-card">
-    <h2>Version 18</h2>
-    <p class="desc">51 tracks | A list that completes a peaceful Sunday afternoon break</p>
-    <div class="btn-group">
-      <a href="https://www.genie.co.kr/player/shareProcessV2?xgnm=114452487;108005739;113265479;113265478;114452487;113204604;113094114;109330096;114452487;112996079;112807970;105757622;114452487;112316643;111876440;108805752;114452487;109967000;103604435;109608007;114452487;113265479;113265478;107985564;114452487;113204604;113094114;94535712;114452487;112996079;112807970;108746466;114452487;112316643;111876440;108575614;114452487;109967000;103604435;112363794;114452487;113265479;113265478;89382909;114452487;113204604;113094114;82280761;114452487;112996079;112807970" target="_blank" class="btn btn-web">Genie Web V18</a>
-      <a href="cromegenie://scan/?landing_type=31&amp;landing_target=114452487;108005739;113265479;113265478;114452487;113204604;113094114;109330096;114452487;112996079;112807970;105757622;114452487;112316643;111876440;108805752;114452487;109967000;103604435;109608007;114452487;113265479;113265478;107985564;114452487;113204604;113094114;94535712;114452487;112996079;112807970;108746466;114452487;112316643;111876440;108575614;114452487;109967000;103604435;112363794;114452487;113265479;113265478;89382909;114452487;113204604;113094114;82280761;114452487;112996079;112807970" class="btn btn-android">Android V18</a>
-      <a href="ktolleh00167://landing/?landing_type=31&amp;landing_target=114452487;108005739;113265479;113265478;114452487;113204604;113094114;109330096;114452487;112996079;112807970;105757622;114452487;112316643;111876440;108805752;114452487;109967000;103604435;109608007;114452487;113265479;113265478;107985564;114452487;113204604;113094114;94535712;114452487;112996079;112807970;108746466;114452487;112316643;111876440;108575614;114452487;109967000;103604435;112363794;114452487;113265479;113265478;89382909;114452487;113204604;113094114;82280761;114452487;112996079;112807970" class="btn btn-iphone">iPhone V18</a>
-    </div>
-  </div>
-
-  <div class="version-card">
-    <h2>Version 19</h2>
-    <p class="desc">45 tracks | A set that maximizes the pure charm of Gwyn Dorado's vocals</p>
-    <div class="btn-group">
-      <a href="https://www.genie.co.kr/player/shareProcessV2?xgnm=114452487;114437249;113265479;113265478;114452487;113204604;113094114;92970438;114452487;112996079;112807970;109342665;114452487;112316643;111876440;89220627;114452487;109967000;103604435;114523503;114452487;113265479;113265478;114510954;114452487;113204604;113094114;114510010;114452487;112996079;112807970;114509545;114452487;112316643;111876440;114509414;114452487;109967000;103604435;114509404;114452487;113265479;113265478;114505374;114452487" target="_blank" class="btn btn-web">Genie Web V19</a>
-      <a href="cromegenie://scan/?landing_type=31&amp;landing_target=114452487;114437249;113265479;113265478;114452487;113204604;113094114;92970438;114452487;112996079;112807970;109342665;114452487;112316643;111876440;89220627;114452487;109967000;103604435;114523503;114452487;113265479;113265478;114510954;114452487;113204604;113094114;114510010;114452487;112996079;112807970;114509545;114452487;112316643;111876440;114509414;114452487;109967000;103604435;114509404;114452487;113265479;113265478;114505374;114452487" class="btn btn-android">Android V19</a>
-      <a href="ktolleh00167://landing/?landing_type=31&amp;landing_target=114452487;114437249;113265479;113265478;114452487;113204604;113094114;92970438;114452487;112996079;112807970;109342665;114452487;112316643;111876440;89220627;114452487;109967000;103604435;114523503;114452487;113265479;113265478;114510954;114452487;113204604;113094114;114510010;114452487;112996079;112807970;114509545;114452487;112316643;111876440;114509414;114452487;109967000;103604435;114509404;114452487;113265479;113265478;114505374;114452487" class="btn btn-iphone">iPhone V19</a>
-    </div>
-  </div>
-
-  <div class="version-card">
-    <h2>Version 20</h2>
-    <p class="desc">54 tracks | The final chapter of a 20-set journey spanning all the songs</p>
-    <div class="btn-group">
-      <a href="https://www.genie.co.kr/player/shareProcessV2?xgnm=114452487;114495196;113265479;113265478;114452487;113204604;113094114;114494601;114452487;112996079;112807970;114494203;114452487;112316643;111876440;114490495;114452487;109967000;103604435;114461689;114452487;113265479;113265478;114439539;114452487;113204604;113094114;114397327;114452487;112996079;112807970;101514417;114452487;112316643;111876440;113791695;114452487;109967000;103604435;113568760;114452487;113265479;113265478;114356078;114452487;113204604;113094114;103167974;114452487;112996079;112807970;113970278;114452487;112316643" target="_blank" class="btn btn-web">Genie Web V20</a>
-      <a href="cromegenie://scan/?landing_type=31&amp;landing_target=114452487;114495196;113265479;113265478;114452487;113204604;113094114;114494601;114452487;112996079;112807970;114494203;114452487;112316643;111876440;114490495;114452487;109967000;103604435;114461689;114452487;113265479;113265478;114439539;114452487;113204604;113094114;114397327;114452487;112996079;112807970;101514417;114452487;112316643;111876440;113791695;114452487;109967000;103604435;113568760;114452487;113265479;113265478;114356078;114452487;113204604;113094114;103167974;114452487;112996079;112807970;113970278;114452487;112316643" class="btn btn-android">Android V20</a>
-      <a href="ktolleh00167://landing/?landing_type=31&amp;landing_target=114452487;114495196;113265479;113265478;114452487;113204604;113094114;114494601;114452487;112996079;112807970;114494203;114452487;112316643;111876440;114490495;114452487;109967000;103604435;114461689;114452487;113265479;113265478;114439539;114452487;113204604;113094114;114397327;114452487;112996079;112807970;101514417;114452487;112316643;111876440;113791695;114452487;109967000;103604435;113568760;114452487;113265479;113265478;114356078;114452487;113204604;113094114;103167974;114452487;112996079;112807970;113970278;114452487;112316643" class="btn btn-iphone">iPhone V20</a>
-    </div>
-  </div>
-  <p style="margin:18px 0 0; font-size:13px; color:#6b7280; text-align:center;">
-    App buttons work only on supported devices with the Genie app installed.
-  </p>
 </div>
+
 </body>
 </html>
