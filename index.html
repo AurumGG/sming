@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Purple Love Smart Streaming (MELON)</title>
+    <title>DORAZIA Smart Streaming (MELON)</title>
     <style>
         body { font-family: 'Pretendard', sans-serif; padding: 20px; background-color: #f0f4f8; color: #334e68; }
         .container { max-width: 950px; margin: 0 auto; background: white; padding: 35px; border-radius: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.06); }
@@ -23,18 +23,18 @@
 <body>
 
 <div class="container">
-    <h1>Purple Love Streaming (MELON) 20260406-71</h1>
+    <h1>DORAZIA Streaming (MELON) 20260406-71</h1>
     <p class="desc">
         <strong>시간 동기화 가변 엔진</strong> (첫 곡 타겟 허용 & 마지막 제외)<br>
         Time-Synced Engine (Target Allowed at First / Excluded at Last)<br>
-		불러올 때 마다 같은 모듈에 다른 파일 목록을 생성합니다.<br>
-		가급적 다른 SET의 모듈들을 섞어서 불규칙성을 최대화 하시기 바랍니다.<br>
-		가령 Set1-Module2 - Set3-Module3 - Set2-Module1 - Set2-Module4 - Set5-Module2<br>
-		등등 과 같이 여러 Set의 Module을 뒤섞어서 플레이 리스트를 구성하세요.<br><br>
-		Each time it is loaded, a different list of files is generated within the same module.<br>
-		To maximize randomness, please mix modules from different sets as much as possible.<br>
-		For example, create a playlist by shuffling modules from various sets, such as: <br>
-		Set1-Module2 - Set3-Module3 - Set2-Module1 - Set2-Module4 - Set5-Module2.
+        불러올 때 마다 같은 모듈에 다른 파일 목록을 생성합니다.<br>
+        가급적 다른 SET의 모듈들을 섞어서 불규칙성을 최대화 하시기 바랍니다.<br>
+        가령 Set1-Module2 - Set3-Module3 - Set2-Module1 - Set2-Module4 - Set5-Module2<br>
+        등등 과 같이 여러 Set의 Module을 뒤섞어서 플레이 리스트를 구성하세요.<br><br>
+        Each time it is loaded, a different list of files is generated within the same module.<br>
+        To maximize randomness, please mix modules from different sets as much as possible.<br>
+        For example, create a playlist by shuffling modules from various sets, such as: <br>
+        Set1-Module2 - Set3-Module3 - Set2-Module1 - Set2-Module4 - Set5-Module2.
     </p>
 
     <script>
@@ -68,17 +68,30 @@
 
             for (let m = 0; m < exposureCount; m++) {
                 let pool = [];
-                let tempG1 = shuffle([...g1]);
-                let tempG2 = shuffle([...g2]);
-                let tempG3 = shuffle([...g3]);
+
+                // =========================================================================
+                // [그룹 제어 컨트롤러] 
+                // 아래 라인을 수정하여 포함하거나 제외할 그룹을 결정할 수 있습니다.
+                // 1. g1만 단독 지정 시: let combinedPool = [...g1];
+                // 2. g1, g2 지정 시:    let combinedPool = [...g1, ...g2];
+                // 3. g1, g3 지정 시:    let combinedPool = [...g1, ...g3];
+                // =========================================================================
+                let combinedPool = [...g1, ...g2, ...g3];
+                // =========================================================================
+
+                // 조합된 풀을 복사하고 랜덤하게 1차로 완전히 뒤섞습니다.
+                let tempNormalSongs = shuffle([...combinedPool]);
 
                 let normalSongCount = songsPerModule - 1;
-                for(let s=0; s < normalSongCount; s++) {
-                    if(s % 2 === 0) pool.push(tempG1.pop());
-                    else pool.push(s % 3 === 0 ? tempG2.pop() : tempG3.pop());
+                for(let s = 0; s < normalSongCount; s++) {
+                    // 특정 그룹만 지정하여 남은 곡이 없을 경우, 보장 시간 충족을 위해 다시 보충하는 안전장치
+                    if (tempNormalSongs.length === 0) {
+                        tempNormalSongs = shuffle([...combinedPool]);
+                    }
+                    pool.push(tempNormalSongs.pop());
                 }
                 
-                shuffle(pool); // DAC 로직: 일반곡 완전 셔플
+                shuffle(pool); // DAC 로직: 추출된 일반곡들을 완전 무작위로 재배치
 
                 // 타겟곡 랜덤 삽입: 마지막(pool.length)만 제외하고 0번 인덱스부터 삽입 가능
                 let targetPos = Math.floor(Math.random() * pool.length); 
@@ -91,7 +104,7 @@
                         <strong>모듈 / Module ${m + 1}</strong><br><small>(${pool.length} Tracks)</small><br><br>
                         <a href="melonapp://play?menuid=0&ctype=1&cid=${cid}" class="btn btn-aos">Android / iOS</a>
                         <a href="melonipad://play/?ctype=1&menuid=0&cid=${cid}" class="btn btn-ios">iPad</a>
-						<a href="melonplayer://play?menuid=0&cflag=1&cid=${cid}" class="btn btn-aos" style="background-color: #2c3e50;">PC / Mac</a>
+                        <a href="melonplayer://play?menuid=0&cflag=1&cid=${cid}" class="btn btn-aos" style="background-color: #2c3e50;">PC / Mac</a>
                     </div>
                 `);
             }
