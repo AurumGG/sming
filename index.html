@@ -3,45 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gwyn Dorado Smart Streaming (MELON)</title>
+    <title>DORAZIA Smart Streaming (MELON)</title>
     <style>
         body { font-family: 'Pretendard', sans-serif; padding: 20px; background-color: #f0f4f8; color: #334e68; }
         .container { max-width: 950px; margin: 0 auto; background: white; padding: 35px; border-radius: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.06); }
         h1 { text-align: center; color: #00cd3c; margin-bottom: 5px; }
         .desc { text-align: center; color: #627d98; font-size: 0.95em; margin-bottom: 35px; line-height: 1.6; }
-        .set-card { border: 1px solid #d9e2ec; border-radius: 20px; margin-bottom: 30px; background: #ffffff; }
-        .set-header { background: #f1f5f9; padding: 15px 25px; font-weight: bold; border-bottom: 1px solid #d9e2ec; display: flex; justify-content: space-between; align-items: center; border-radius: 20px 20px 0 0; }
-        .exposure-tag { background: #dcfce7; color: #166534; padding: 5px 14px; border-radius: 25px; font-size: 0.85em; }
+        .section-title { font-size: 1.4em; color: #1e293b; margin: 40px 0 15px 0; padding-bottom: 10px; border-bottom: 2px solid #e2e8f0; font-weight: bold; }
+        .set-card { border: 1px solid #d9e2ec; border-radius: 20px; margin-bottom: 30px; background: #ffffff; overflow: hidden; }
+        .set-header { background: #f1f5f9; padding: 15px 25px; font-weight: bold; border-bottom: 1px solid #d9e2ec; display: flex; justify-content: space-between; align-items: center; }
+        .ver-header-a { background: #f0fdf4; border-bottom: 1px solid #bbf7d0; color: #166534; }
+        .ver-header-b { background: #f0f9ff; border-bottom: 1px solid #bae6fd; color: #0369a1; }
+        .ver-header-c { background: #faf5ff; border-bottom: 1px solid #e9d5ff; color: #6b21a8; }
+        .exposure-tag { background: #e2e8f0; color: #334e68; padding: 5px 14px; border-radius: 25px; font-size: 0.85em; font-weight: bold; }
+        .tag-a { background: #bbf7d0; color: #166534; }
+        .tag-b { background: #bae6fd; color: #0369a1; }
+        .tag-c { background: #e9d5ff; color: #6b21a8; }
         .module-container { display: flex; flex-wrap: wrap; gap: 15px; padding: 25px; justify-content: center; }
-        .module-box { flex: 1; min-width: 160px; max-width: 220px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 15px; padding: 15px; text-align: center; }
+        .module-box { flex: 1; min-width: 220px; max-width: 280px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 15px; padding: 15px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
         .btn { display: block; padding: 10px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 0.85em; margin-bottom: 8px; transition: 0.2s; }
         .btn-aos { background-color: #00cd3c; color: white; }
         .btn-ios { background-color: #0ea5e9; color: white; }
+        .btn-pc { background-color: #2c3e50; color: white; }
+        .btn:hover { opacity: 0.9; transform: translateY(-1px); }
         .footer { margin-top: 50px; text-align: center; font-size: 0.85em; color: #94a3b8; border-top: 1px solid #f1f5f9; padding-top: 25px; line-height: 1.6; }
+        .info-text { font-size: 0.85em; color: #64748b; margin-top: 8px; line-height: 1.4; text-align: left; background: #ffffff; padding: 8px; border-radius: 8px; border: 1px dashed #cbd5e1; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Gwyn Dorado Streaming (MELON) 20260406-71</h1>
+    <h1>DORAZIA Streaming (MELON)</h1>
     <p class="desc">
-        <strong>시간 동기화 가변 엔진</strong> (첫 곡 타겟 허용 & 마지막 제외)<br>
-        Time-Synced Engine (Target Allowed at First / Excluded at Last)<br>
-        불러올 때 마다 같은 모듈에 다른 파일 목록을 생성합니다.<br>
-        가급적 다른 SET의 모듈들을 섞어서 불규칙성을 최대화 하시기 바랍니다.<br>
-        가령 Set1-Module2 - Set3-Module3 - Set2-Module1 - Set2-Module4 - Set5-Module2<br>
-        등등 과 같이 여러 Set의 Module을 뒤섞어서 플레이 리스트를 구성하세요.<br><br>
-        Each time it is loaded, a different list of files is generated within the same module.<br>
-        To maximize randomness, please mix modules from different sets as much as possible.<br>
-        For example, create a playlist by shuffling modules from various sets, such as: <br>
-        Set1-Module2 - Set3-Module3 - Set2-Module1 - Set2-Module4 - Set5-Module2.
+        <strong>마음을 놓치다 스마트 스트리밍 시스템</strong><br>
+        상단 고정 리스트(Ver A, B, C)는 멜론의 중복 곡 등록 제한을 우회하기 위해 각각 3개로 분할되어 있습니다.<br>
+        <strong>순서대로 [곡 담기]</strong>를 진행하시면 중복 누락 없이 온전한 리스트가 재생목록 뒤에 추가됩니다.
+    </p>
+
+    <div class="section-title">📢 운영자 공식 추천 리스트 (중복 방지 3분할)</div>
+
+    <div class="set-card">
+        <div class="set-header ver-header-a">
+            <span>공식 추천 리스트 VER A (약 1시간 04분)</span>
+            <span class="exposure-tag tag-a">타겟 3회 포함</span>
+        </div>
+        <div class="module-container">
+            <div class="module-box">
+                <strong>VER A - 파트 1</strong><br><small>(01~02번 트랙)</small>
+                <div class="info-text">① Why Do We Love?<br>② <b>마음을 놓치다 (타겟)</b></div><br>
+                <a href="melonapp://play?menuid=0&ctype=1&cid=36816030,602057369" class="btn btn-aos">Android / iOS</a>
+                <a href="melonipad://play/?ctype=1&menuid=0&cid=36816030,602057369" class="btn btn-ios">iPad</a>
+                <a href="melonplayer://play?menuid=0&cflag=1&cid=36816030,602057369" class="btn btn-pc">PC / Mac</a>
+            </div>
+            <div class="module-box">
+                <strong>VER A - 파트 2</strong><br><small>(03~07번 트랙)</small>
+                <div class="info-text">③ I Want You<br>④ 다시 돌아온 계절<br>⑤ Light Up<br>⑥ 그대를 위해서<br>⑦ <b>마음을 놓치다 (타겟)</b></div><br>
+                <a href="melonapp://play?menuid=0&ctype=1&cid=600770078,602004650,600806382,600151798,602057369" class="btn btn-aos">Android / iOS</a>
+                <a href="melonipad://play/?ctype=1&menuid=0&cid=600770078,602004650,600806382,600151798,602057369" class="btn btn-ios">iPad</a>
+                <a href="melonplayer://play?menuid=0&cflag=1&cid=600770078,602004650,600806382,600151798,602057369" class="btn btn-pc">PC / Mac</a>
+            </div>
+            <div class="module-box">
+                <strong>VER A - 파트 3</strong><br><small>(08~13번 트랙)</small>
+                <div class="info-text">⑧ What If<br>⑨ Purple Love<br>⑩ 하여튼<br>⑪ <b>마음을 놓치다 (타겟)</b><br>⑫ Beautiful<br>⑬ 그대라는 시</div><br>
+                <a href="melonapp://play?menuid=0&ctype=1&cid=38875091,601671374,601938750,602057369,30748953,31938460" class="btn btn-aos">Android / iOS</a>
+                <a href="melonipad://play/?ctype=1&menuid=0&cid=38875091,601671374,601938750,602057369,30748953,31938460" class="btn btn-ios">iPad</a>
+                <a href="melonplayer://play?menuid=0&cflag=1&cid=38875091,601671374,601938750,602057369,30748953,31938460" class="btn btn-pc">PC / Mac</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="set-card">
+        <div class="set-header ver-header-b">
+            <span>공식 추천 리스트 VER B (약 1시간 05분)</span>
+            <span class="exposure-tag tag-b">타겟 3회 포함</span>
+        </div>
+        <div class="module-container">
+            <div class="module-box">
+                <strong>VER B - 파트 1</strong><br><small>(01~03번 트랙)</small>
+                <div class="info-text">① Light Up<br>② 다시 돌아온 계절<br>③ <b>마음을 놓치다 (타겟)</b></div><br>
+                <a href="melonapp://play?menuid=0&ctype=1&cid=600806382,602004650,602057369" class="btn btn-aos">Android / iOS</a>
+                <a href="melonipad://play/?ctype=1&menuid=0&cid=600806382,602004650,602057369" class="btn btn-ios">iPad</a>
+                <a href="melonplayer://play?menuid=0&cflag=1&cid=600806382,602004650,602057369" class="btn btn-pc">PC / Mac</a>
+            </div>
+            <div class="module-box">
+                <strong>VER B - 파트 2</strong><br><small>(04~07번 트랙)</small>
+                <div class="info-text">④ 하여튼<br>⑤ 그대를 위해서<br>⑥ Purple Love<br>⑦ <b>마음을 놓치다 (타겟)</b></div><br>
+                <a href="melonapp://play?menuid=0&ctype=1&cid=601938750,600151798,601671374,602057369" class="btn btn-aos">Android / iOS</a>
+                <a href="melonipad://play/?ctype=1&menuid=0&cid=601938750,600151798,601671374,602057369" class="btn btn-ios">iPad</a>
+                <a href="melonplayer://play?menuid=0&cflag=1&cid=601938750,600151798,601671374,602057369" class="btn btn-pc">PC / Mac</a>
+            </div>
+            <div class="module-box">
+                <strong>VER B - 파트 3</strong><br><small>(08~13번 트랙)</small>
+                <div class="info-text">⑧ What If<br>⑨ Beautiful<br>⑩ I Want You<br>⑪ <b>마음을 놓치다 (타겟)</b><br>⑫ On My Way<br>⑬ 사랑인가 봐</div><br>
+                <a href="melonapp://play?menuid=0&ctype=1&cid=38875091,30748953,600770078,602057369,600151797,34657844" class="btn btn-aos">Android / iOS</a>
+                <a href="melonipad://play/?ctype=1&menuid=0&cid=38875091,30748953,600770078,602057369,600151797,34657844" class="btn btn-ios">iPad</a>
+                <a href="melonplayer://play?menuid=0&cflag=1&cid=38875091,30748953,600770078,602057369,600151797,34657844" class="btn btn-pc">PC / Mac</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="set-card">
+        <div class="set-header ver-header-c">
+            <span>공식 추천 리스트 VER C (약 1시간 03분)</span>
+            <span class="exposure-tag tag-c">타겟 3회 포함</span>
+        </div>
+        <div class="module-container">
+            <div class="module-box">
+                <strong>VER C - 파트 1</strong><br><small>(01~04번 트랙)</small>
+                <div class="info-text">① 다시 돌아온 계절<br>② I Want You<br>③ 그대를 위해서<br>④ <b>마음을 놓치다 (타겟)</b></div><br>
+                <a href="melonapp://play?menuid=0&ctype=1&cid=602004650,600770078,600151798,602057369" class="btn btn-aos">Android / iOS</a>
+                <a href="melonipad://play/?ctype=1&menuid=0&cid=602004650,600770078,600151798,602057369" class="btn btn-ios">iPad</a>
+                <a href="melonplayer://play?menuid=0&cflag=1&cid=602004650,600770078,600151798,602057369" class="btn btn-pc">PC / Mac</a>
+            </div>
+            <div class="module-box">
+                <strong>VER C - 파트 2</strong><br><small>(05~08번 트랙)</small>
+                <div class="info-text">⑤ Light Up<br>⑥ Beautiful<br>⑦ Purple Love<br>⑧ <b>마음을 놓치다 (타겟)</b></div><br>
+                <a href="melonapp://play?menuid=0&ctype=1&cid=600806382,30748953,601671374,602057369" class="btn btn-aos">Android / iOS</a>
+                <a href="melonipad://play/?ctype=1&menuid=0&cid=600806382,30748953,601671374,602057369" class="btn btn-ios">iPad</a>
+                <a href="melonplayer://play?menuid=0&cflag=1&cid=600806382,30748953,601671374,602057369" class="btn btn-pc">PC / Mac</a>
+            </div>
+            <div class="module-box">
+                <strong>VER C - 파트 3</strong><br><small>(09~13번 트랙)</small>
+                <div class="info-text">⑨ On My Way<br>⑩ 하여튼<br>⑪ Why Do We Love?<br>⑫ <b>마음을 놓치다 (타겟)</b><br>⑬ 그대라는 시</div><br>
+                <a href="melonapp://play?menuid=0&ctype=1&cid=600151797,601938750,36816030,602057369,31938460" class="btn btn-aos">Android / iOS</a>
+                <a href="melonipad://play/?ctype=1&menuid=0&cid=600151797,601938750,36816030,602057369,31938460" class="btn btn-ios">iPad</a>
+                <a href="melonplayer://play?menuid=0&cflag=1&cid=600151797,601938750,36816030,602057369,31938460" class="btn btn-pc">PC / Mac</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="section-title">🔀 시간 동기화 가변 생성 엔진 (랜덤 패턴 빌더)</div>
+    <p style="font-size:0.85em; color:#627d98; margin-top:-10px; margin-bottom:20px;">
+        불러올 때마다 일반곡 풀에서 무작위 추출하여 타겟곡을 랜덤 포지셔닝(첫 곡 포함, 마지막 곡 제외) 시킵니다.
     </p>
 
     <script>
+        // 타겟곡 ID 변경 (마음을 놓치다)
         const targetId = "602057369";
-        const g1 = ["601671374", "600806382", "600770078", "600151797", "600151798", "38875091", "36816030", "600706635", "600656412", "600571771", "600332434", "600418516", "602004650", "601938750", "30748953",  "31938460", "34657844"];
-        const g2 = ["601680777", "601684352", "601676007", "601685304", "601675892", "601645177", "601694948", "601685083", "601675891", "601672944", "601683484", "601684109", "601615814", "601674307", "601672040", "601672038", "601615064", "601632440", "601630672", "601641057", "601613152", "601606473", "601631034", "601632766", "601615981", "601630808", "601630617", "601641721", "601630512", "601612734", "601630599", "601631416", "601615337", "601596324", "601628587", "601612718", "601615844", "601615638", "601628585", "601614320", "601604057", "601509058", "601614909", "601612444", "601612646", "601606015", "601603963", "601604267", "601597222"];
-        const g3 = ["601237102", "601013499", "601332163", "601555642", "36397952", "600287375", "36730261", "39504779", "601555636", "600299706", "33241003", "38626852", "39307948", "601461624", "600243411", "38733032", "4446485", "32061975", "601356371", "39166708", "39298775", "38300904", "38429074", "37228861", "34657844", "38104031", "1556553", "37323944", "601555637", "38629386", "1121123", "600354699", "38123332", "30962526", "31927275", "36699489", "38242510", "38123338", "38071559", "37375706", "37390939", "600359330", "39156202", "30232719", "600513208", "37323943", "38635449", "31666417", "601555640", "601379618"];
+        
+        // 그룹 구성 업데이트
+        const g1 = ["601671374", "600806382", "600770078", "600151797", "600151798", "38875091", "36816030"]; 
+        const g2 = ["602004650", "601938750", "30748953", "31938460", "34657844"]; 
+        const g3 = ["601237102", "601013499", "601332163", "601555642", "36397952", "600287375", "36730261", "39504779", "601555636", "600299706", "33241003", "38626852", "39307948", "601461624", "600243411", "38733032", "4446485", "32061975", "601356371", "39166708", "39298775", "38300904", "38429074", "37228861", "38104031", "1556553", "37323944", "601555637", "38629386", "1121123", "600354699", "38123332", "30962526", "31927275", "36699489", "38242510", "38123338", "38071559", "37375706", "37390939", "600359330", "39156202", "30232719", "600513208", "37323943", "38635449", "31666417", "601555640", "601379618"];
 
         function shuffle(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -51,7 +155,7 @@
             return array;
         }
 
-        const exposurePatterns = [3, 4, 3, 5, 3, 4, 5, 6, 7];
+        const exposurePatterns = [3, 4, 2, 5, 3, 4, 5, 6, 7, 8];
         const TOTAL_TARGET_SONGS = 18;
 
         for (let i = 0; i < 10; i++) {
@@ -65,36 +169,25 @@
                         <span class="exposure-tag">타겟 ${exposureCount}회 / Target ${exposureCount}x</span>
                     </div>
                     <div class="module-container">`);
-
+            
             for (let m = 0; m < exposureCount; m++) {
                 let pool = [];
+                let combinedPool = [...g1, ...g2, ...g3];
 
-                // =========================================================================
-                // [그룹 제어 컨트롤러] 
-                // 아래 라인을 수정하여 포함하거나 제외할 그룹을 결정할 수 있습니다.
-                // 1. g1만 단독 지정 시: let combinedPool = [...g1];
-                // 2. g1, g2 지정 시:    let combinedPool = [...g1, ...g2];
-                // 3. g1, g3 지정 시:    let combinedPool = [...g1, ...g3];
-                // =========================================================================
-                let combinedPool = [...g1];
-                // =========================================================================
-
-                // 조합된 풀을 복사하고 랜덤하게 1차로 완전히 뒤섞습니다.
                 let tempNormalSongs = shuffle([...combinedPool]);
-
                 let normalSongCount = songsPerModule - 1;
+                
                 for(let s = 0; s < normalSongCount; s++) {
-                    // 특정 그룹만 지정하여 남은 곡이 없을 경우, 보장 시간 충족을 위해 다시 보충하는 안전장치
                     if (tempNormalSongs.length === 0) {
                         tempNormalSongs = shuffle([...combinedPool]);
                     }
                     pool.push(tempNormalSongs.pop());
                 }
                 
-                shuffle(pool); // DAC 로직: 추출된 일반곡들을 완전 무작위로 재배치
+                shuffle(pool);
 
-                // 타겟곡 랜덤 삽입: 마지막(pool.length)만 제외하고 0번 인덱스부터 삽입 가능
-                let targetPos = Math.floor(Math.random() * pool.length); 
+                // 타겟곡 랜덤 삽입 (마지막 인덱스 제외)
+                let targetPos = Math.floor(Math.random() * pool.length);
                 pool.splice(targetPos, 0, targetId);
 
                 let cid = pool.join(',');
@@ -104,7 +197,7 @@
                         <strong>모듈 / Module ${m + 1}</strong><br><small>(${pool.length} Tracks)</small><br><br>
                         <a href="melonapp://play?menuid=0&ctype=1&cid=${cid}" class="btn btn-aos">Android / iOS</a>
                         <a href="melonipad://play/?ctype=1&menuid=0&cid=${cid}" class="btn btn-ios">iPad</a>
-                        <a href="melonplayer://play?menuid=0&cflag=1&cid=${cid}" class="btn btn-aos" style="background-color: #2c3e50;">PC / Mac</a>
+                        <a href="melonplayer://play?menuid=0&cflag=1&cid=${cid}" class="btn btn-pc">PC / Mac</a>
                     </div>
                 `);
             }
